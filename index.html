@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Поиск фильмов и сериалов. Найди любимое кино по названию, жанру, году или рейтингу">
+    <title>Поиск фильмов</title>
+    <meta property="og:title" content="Поиск фильмов и сериалов">
+    <meta property="og:description" content="Найди фильмы и сериалы по названию, жанру, рейтингу и году выпуска">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/colors.css">
+    <link rel="stylesheet" href="style/common.css">
+    <link rel="stylesheet" href="style/index.css">
+
+    <script src="script/theme.js" defer></script>
+    <script src="script/burger.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+
+                <a href="index.html" class="header__logo" aria-label="На главную">
+                    <img src="assets/logo.svg" alt="FilmSearch" width="342" height="70">
+                </a>
+
+                <div class="header__panel">
+                    <nav class="header__nav">
+                        <ul class="header__menu">
+                            <li class="header__menu-item">
+                                <a href="movie_list/index.html" class="header__menu-link">Фильмы</a>
+                            </li>
+                            <li class="header__menu-item">
+                                <a href="series_list/index.html" class="header__menu-link">Сериалы</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="theme-toggle">
+                        <span>Тёмная тема</span>
+                        <button class="theme-toggle__button" type="button" aria-label="Переключить тему">
+                            <span class="theme-toggle__circle"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="burger" type="button" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <footer class="footer"></footer>
+    <script>
+    </script>
+</body>
+
+</html>
