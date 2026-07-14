@@ -1,8 +1,16 @@
 :root {
-    --color-black: #000000;
-    --color-primary: #8100FF;
-    --color-secondary: #FF5C00;
-    --color-white: #FFFFFF;
-    --color-grey: #9A9A9A;
-    --color-light-grey: #E9E9E9;
+    --black: #000000;
+    --white: #FFFFFF;
+    --purple: #8100FF;
+    --orange: #FF5C00;
+    --grey: #9A9A9A;
+    --light-grey: #E9E9E9;
+
+    --bg-body: var(--white);
+    --text-primary: var(--black);
+}
+
+[data-theme="dark"] {
+    --bg-body: var(--black);
+    --text-primary: var(--white);
 }

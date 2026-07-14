@@ -1,12 +1,28 @@
-function initTheme () {
-    const themeToggle = document.querySelector('.theme-toggle__button')
-    const themeCircle = document.querySelector('.theme-toggle__circle')
-    themeToggle.addEventListener('click', () => {
-        themeCircle.classList.toggle('active')
-    });
-}
+function initTheme() {
+    const toggleBtn = document.querySelector('.theme-toggle__button');
+    const html = document.documentElement; 
 
-initTheme();
+    if (!toggleBtn) return;
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+  
+  initTheme();
 
 
   
