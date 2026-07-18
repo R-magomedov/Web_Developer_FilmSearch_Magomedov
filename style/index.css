@@ -101,3 +101,146 @@
         );
     }
 }
+
+/*gallery*/
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    padding: 103px 1vw;
+}
+
+.gallery__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--arrow);
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.gallery__arrow:disabled {
+    color: var(--arrow-disabled);
+    cursor: default;
+}
+
+.gallery__arrow--prev {
+    transform: scaleX(-1);
+}
+
+.gallery__list {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(40px, 5vw, 100px);
+    overflow: hidden;
+}
+
+.movie-card {
+    display: grid;
+    height: 500px;
+    width: 358px;
+}
+
+.movie-card__overlay,
+.movie-card__media {
+    grid-area: 1 / 1;
+}
+
+.movie-card__overlay {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 55px;
+    padding-top: 14px;
+    padding-left: 14px;
+}
+
+.movie-card__media {
+    position: relative;
+}
+
+.movie-card__poster {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.movie-card__rating {
+    background-color: var(--green);
+    color: var(--white);
+    font-size: 20.5px;
+    font-weight: 700;
+    width: fit-content;
+    padding: 3.25px 10.85px;
+}
+
+.movie-card__rating--high {
+    background-color: var(--high);
+}
+  
+  .movie-card__rating--medium {
+    background-color: var(--medium);
+}
+  
+  .movie-card__rating--low {
+    background-color: var(--low);
+}
+
+.movie-card__title {
+    color: var(--white);
+    font-size: 29.52px;
+    font-weight: 600;
+    
+}
+
+.movie-card__gradient {
+    position: absolute;
+    bottom: 0;
+    top: unset;
+    width: 100%;
+    height: 50%;
+    background-image: 
+        linear-gradient(to top,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 75%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        justify-content: space-between;
+        gap: 16px;
+        padding: 80px 18px;
+    }
+
+    .gallery__arrow svg {
+        width: 14px;
+        height: 26px;
+    }
+
+    .gallery__list {
+        justify-content: center;
+    }
+    
+    .movie-card {
+        width: 263px;
+        height: 367px;
+        flex-shrink: 0; 
+    }
+
+    .movie-card__rating {
+        font-size: 15px;
+        padding: 2.39px 7.97px;
+    }
+
+    .movie-card__title {
+        font-size: 21.7px;
+    }
+}
