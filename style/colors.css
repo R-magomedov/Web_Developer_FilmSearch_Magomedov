@@ -8,7 +8,9 @@
     --green: #3BB33B;
     --low: #FF0000;
     --medium: #FFAF37;
-    --high: #3BB33B;
+    --high: var(--green);
+    --hoverSvg: #855BFC;
+    --hoverBtn: #504C4C;
 
     --bg-body: var(--white);
     --text-primary: var(--black);
