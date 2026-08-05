@@ -11,19 +11,28 @@
     --high: var(--green);
     --hoverSvg: #855BFC;
     --hoverBtn: #504C4C;
+    --select :#686868;
 
+/* Светлая тема */
     --bg-body: var(--white);
     --text-primary: var(--black);
 
     --arrow: #010101;
     --arrow-disabled: #CDCDCD;
+
+    --bg-numberPage: #C0C0C0;
+    --bg-numberPage-active: var(--black);
 }
 
-[data-theme="dark"] {
+/* Темная тема */
+[data-theme="dark"] { 
     --bg-body: var(--black);
     --text-primary: var(--white);
 
     --arrow: var(--white); 
     --arrow-disabled: #7D7D7D;
+
+    --bg-numberPage: #7D7D7D;
+    --bg-numberPage-active: var(--white);
 }
 
