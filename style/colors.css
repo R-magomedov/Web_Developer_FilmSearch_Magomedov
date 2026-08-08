@@ -22,6 +22,8 @@
 
     --bg-numberPage: #C0C0C0;
     --bg-numberPage-active: var(--black);
+
+    --dt: #A9A9A9;
 }
 
 /* Темная тема */
@@ -34,5 +36,7 @@
 
     --bg-numberPage: #7D7D7D;
     --bg-numberPage-active: var(--white);
+
+    --dt: #7D7D7D;
 }
 
