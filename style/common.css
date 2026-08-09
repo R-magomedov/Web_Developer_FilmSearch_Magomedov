@@ -411,13 +411,7 @@ body {
 
 
 /*Галерея*/
-.gallery {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 30px;
-  padding: 103px 1vw;
-}
+
 
 .gallery__arrow {
   display: flex;

@@ -99,7 +99,7 @@
     </section>
     <section class="movie-trailer">
         <div class="container">
-            <h2 class="movie-trailer__title">Трейлер</h2>
+            <h2 class="movie__title">Трейлер</h2>
      
             <div class="movie-trailer__video">
                 <video class="movie-trailer__player"
@@ -110,6 +110,48 @@
                 <div class="movie-trailer__gradient" aria-hidden="true"></div>
                 <button class="movie-trailer__play" type="button" aria-label="Воспроизвести трейлер">
                     <span class="movie-trailer__play-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="movie-shots">
+        <div class="container">
+            <div class="movie-shots__header">
+                <h2 class="movie__title">Галерея</h2>
+                <div class="movie-shots__nav-mobile">
+                    <button class="gallery__arrow gallery__arrow--prev" aria-label="Назад" disabled>
+                        <svg width="20" height="40" viewBox="0 0 26 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
+                        </svg>
+                    </button>
+                    <button class="gallery__arrow gallery__arrow--next" aria-label="Вперед">
+                        <svg width="20" height="40" viewBox="0 0 26 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="movie-shots__slider">
+                <button class="gallery__arrow gallery__arrow--prev movie-shots__arrow-desktop" aria-label="Назад" disabled>
+                    <svg width="20" height="40" viewBox="0 0 26 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
+                    </svg>
+                </button>
+                <ul class="movie-shots__list">
+                    <li class="movie-shots__item">
+                        <img src="../assets/Images/movie-poster-1.png" alt="Кадр из фильма" class="movie-shots__poster">
+                    </li>
+                    <li class="movie-shots__item">
+                        <img src="../assets/Images/movie-poster-2.png" alt="Кадр из фильма" class="movie-shots__poster">
+                    </li>
+                    <li class="movie-shots__item">
+                        <img src="../assets/Images/movie-poster-3.png" alt="Кадр из фильма" class="movie-shots__poster">
+                    </li>
+                </ul>
+                <button class="gallery__arrow gallery__arrow--next movie-shots__arrow-desktop" aria-label="Вперед">
+                    <svg width="20" height="40" viewBox="0 0 26 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -169,3 +211,4 @@
 </body>
 
 </html>
+

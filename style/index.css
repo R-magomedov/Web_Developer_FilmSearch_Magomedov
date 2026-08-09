@@ -107,6 +107,14 @@
 
 
 /*gallery*/
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    padding: 103px 1vw;
+  }
   
 .gallery .gallery__list { 
     gap: clamp(40px, 3vw, 100px);
