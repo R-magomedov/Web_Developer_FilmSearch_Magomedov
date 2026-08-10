@@ -120,6 +120,21 @@
     gap: clamp(40px, 3vw, 100px);
 }
 
+@media (min-width: 1300px) {  
+    .gallery {
+        gap: 141px;
+        padding: 103px 162px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery {
+        justify-content: space-between;
+        gap: 16px;
+        padding: 80px 18px;
+    }
+}
+
 /*about*/
 
 .about { 

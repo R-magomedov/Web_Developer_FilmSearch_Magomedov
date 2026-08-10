@@ -455,9 +455,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 55px;
+  padding-bottom: 91px;
   padding-top: 14px;
-  padding-left: 14px;
+  padding-left: 18px;
 }
 
 .movie-card__media {
@@ -494,6 +494,8 @@ body {
 .movie-card__title {
   color: var(--white);
   font-size: 30px;  
+  max-width: calc(100% - 18px);
+
 }
 
 .movie-card__gradient {
@@ -512,10 +514,11 @@ body {
 
 
 @media (min-width: 1300px) {
-  .gallery {
-      gap: 141px;
-      padding: 103px 162px;
+
+  .container {
+    padding-inline: unset;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -525,19 +528,26 @@ body {
       padding: 80px 18px;
   }
 
+  .movie-card__overlay {
+    padding-bottom: 67px;
+    padding-top: 10px;
+    padding-left: 14px;
+  }
+
   .gallery__arrow svg {
       width: 14px;
       height: 26px;
   }
 
   .gallery__list {
-      justify-content: center;
-      
+      display: flex;
+      overflow: hidden;
   }
-  
+
   .movie-card {
-      width: 263px;
-      height: 367px;
+      flex: 0 0 100%;
+      width: 100%;
+      height: auto;
       flex-shrink: 0; 
   }
 
@@ -548,5 +558,6 @@ body {
 
   .movie-card__title {
       font-size: 22px;
+      max-width: calc(100% - 14px);
   }
 }

@@ -24,6 +24,11 @@
     --bg-numberPage-active: var(--black);
 
     --dt: #A9A9A9;
+
+    --bg-reviewsCard: #F2F2F2;
+
+    --bg-star_filled: var(--black);
+    --bg-star_empty: #C6C6C6;
 }
 
 /* Темная тема */
@@ -38,5 +43,10 @@
     --bg-numberPage-active: var(--white);
 
     --dt: #7D7D7D;
+
+    --bg-reviewsCard: #010101;
+
+    --bg-star_filled: var(--white);
+    --bg-star_empty: #6D6D6D;
 }
 
