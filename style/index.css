@@ -114,10 +114,17 @@
     align-items: center;
     gap: 30px;
     padding: 103px 1vw;
-  }
+}
+
+.gallery .movie-card {
+    flex: 0 0 calc(33.333% - 40px);
+}
   
-.gallery .gallery__list { 
-    gap: clamp(40px, 3vw, 100px);
+.gallery__list {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    gap: 60px;
 }
 
 @media (min-width: 1300px) {  
@@ -128,10 +135,15 @@
   }
 
   @media (max-width: 768px) {
+    
     .gallery {
         justify-content: space-between;
         gap: 16px;
         padding: 80px 18px;
+    }
+    
+    .gallery .movie-card {
+        flex: 0 0 100%;
     }
 }
 

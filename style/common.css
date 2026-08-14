@@ -434,13 +434,6 @@ body {
   transform: scaleX(-1);
 }
 
-.gallery__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  overflow: hidden;
-}
-
-
 .movie-card {
   display: grid;
 }
@@ -522,11 +515,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .gallery {
-      justify-content: space-between;
-      gap: 16px;
-      padding: 80px 18px;
-  }
 
   .movie-card__overlay {
     padding-bottom: 67px;
@@ -537,11 +525,6 @@ body {
   .gallery__arrow svg {
       width: 14px;
       height: 26px;
-  }
-
-  .gallery__list {
-      display: flex;
-      overflow: hidden;
   }
 
   .movie-card {
