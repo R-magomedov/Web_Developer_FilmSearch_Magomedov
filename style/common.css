@@ -107,7 +107,8 @@ body {
 }
 
 .header__menu-link:hover,
-.header__menu-link:focus-visible {
+.header__menu-link:focus-visible,
+.header__menu-link--active {
   color: var(--grey);
 }
 

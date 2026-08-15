@@ -18,6 +18,7 @@
 
     <script src="../script/theme.js" defer></script>
     <script src="../script/burger.js" defer></script>
+    <script src="../script/slider.js"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
                     <nav class="header__nav">
                         <ul class="header__menu">
                             <li class="header__menu-item">
-                                <a href="./index.html" class="header__menu-link">Фильмы</a>
+                                <a href="./index.html" class="header__menu-link header__menu-link--active">Фильмы</a>
                             </li>
                             <li class="header__menu-item">
                                 <a href="../series_list/index.html" class="header__menu-link">Сериалы</a>
@@ -275,6 +276,9 @@
             </ul>
         </div>
     </footer>
+    <script>
+        initSlider(document.querySelector('.catalog__slider'), 15);
+    </script>
 </body>
 
 </html>

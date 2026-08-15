@@ -123,8 +123,10 @@
 .gallery__list {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     gap: 60px;
+
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
 @media (min-width: 1300px) {  
@@ -135,7 +137,7 @@
   }
 
   @media (max-width: 768px) {
-    
+
     .gallery {
         justify-content: space-between;
         gap: 16px;

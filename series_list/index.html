@@ -17,16 +17,15 @@
 
     <script src="../script/theme.js" defer></script>
     <script src="../script/burger.js" defer></script>
+    <script src="../script/slider.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="header__inner">
-
                 <a href="../index.html" class="header__logo" aria-label="На главную">
                     <img src="../assets/icons/logo.svg" alt="FilmSearch" width="342" height="70">
                 </a>
-
                 <div class="header__panel">
                     <nav class="header__nav">
                         <ul class="header__menu">
@@ -34,7 +33,7 @@
                                 <a href="../movie_list/index.html" class="header__menu-link">Фильмы</a>
                             </li>
                             <li class="header__menu-item">
-                                <a href="./index.html" class="header__menu-link">Сериалы</a>
+                                <a href="./index.html" class="header__menu-link header__menu-link--active">Сериалы</a>
                             </li>
                         </ul>
                     </nav>
@@ -273,5 +272,8 @@
             </ul>
         </div>
     </footer>
+    <script>
+        initSlider(document.querySelector('.catalog__slider'), 15);
+    </script>
 </body>
 </html>

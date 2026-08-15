@@ -2,7 +2,7 @@ function initBurger () {
            
     const burger = document.querySelector('.burger')
     const panel = document.querySelector('.header__panel')
-
+    if (!panel) return;
     if (!burger) return;
     burger.addEventListener('click', () => {
         burger.classList.toggle('active');
