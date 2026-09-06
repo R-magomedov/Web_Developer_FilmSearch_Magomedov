@@ -18,7 +18,7 @@
 
     <script src="../script/theme.js" defer></script>
     <script src="../script/burger.js" defer></script>
-    <script src="../script/slider.js"></script>
+    <script src="../script/list.js" type="module"></script>
 </head>
 
 <body>
@@ -68,11 +68,7 @@
         <div class="catalog__head">
             <h1 class="catalog__title">Фильмы</h1>
             <div class="pages">
-                <span class="page page--active">1</span>
-                <span class="page">2</span>
-                <span class="page">3</span>
-                <span class="page">4</span>
-                <span class="page">5</span>
+                
             </div>
         </div>
         <aside class="filters">
@@ -126,98 +122,7 @@
                     <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
                 </svg>
             </button>
-            <ul class="catalog__list">
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.8</div>
-                        <h3 class="movie-card__title">Проклятое королевство</h3>        
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-1.png" alt="Постер фильма «Проклятое королевство»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.7</div>
-                        <h3 class="movie-card__title">Красный код</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-2.png" alt="Постер фильма «Красный код»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">8.7</div>
-                        <h3 class="movie-card__title">Путеводная звезда</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-3.png" alt="Постер фильма «Путеводная звезда»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.8</div>
-                        <h3 class="movie-card__title">Проклятое королевство</h3>        
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-1.png" alt="Постер фильма «Проклятое королевство»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.7</div>
-                        <h3 class="movie-card__title">Красный код</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-2.png" alt="Постер фильма «Красный код»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">8.7</div>
-                        <h3 class="movie-card__title">Путеводная звезда</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-3.png" alt="Постер фильма «Путеводная звезда»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.8</div>
-                        <h3 class="movie-card__title">Проклятое королевство</h3>        
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-1.png" alt="Постер фильма «Проклятое королевство»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">9.7</div>
-                        <h3 class="movie-card__title">Красный код</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-2.png" alt="Постер фильма «Красный код»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-                <li class="movie-card">
-                    <div class="movie-card__overlay">
-                        <div class="movie-card__rating">8.7</div>
-                        <h3 class="movie-card__title">Путеводная звезда</h3>
-                    </div>
-                    <div class="movie-card__media">
-                        <img src="../assets/Images/movie-poster-3.png" alt="Постер фильма «Путеводная звезда»" class="movie-card__poster">
-                        <div class="movie-card__gradient" aria-hidden="true"></div>
-                    </div>
-                </li>
-            </ul>
+            <ul class="catalog__list" id="ul"></ul>
             <button class="gallery__arrow gallery__arrow--next" aria-label="Вперед">
                 <svg width="14" height="26" viewBox="0 0 26 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.76758 1.76758L21.7676 21.7676L1.76758 41.7676" stroke="currentColor" stroke-width="5"/>
@@ -276,9 +181,7 @@
             </ul>
         </div>
     </footer>
-    <script>
-        initSlider(document.querySelector('.catalog__slider'), 15);
-    </script>
+
 </body>
 
 </html>

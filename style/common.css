@@ -437,6 +437,7 @@ body {
 
 .movie-card {
   display: grid;
+  cursor: pointer;
 }
 
 .movie-card__overlay,
@@ -465,7 +466,6 @@ body {
 }
 
 .movie-card__rating {
-  background-color: var(--green);
   color: var(--white);
   font-size: 21px;
   font-weight: 700;

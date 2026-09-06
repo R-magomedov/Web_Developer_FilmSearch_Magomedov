@@ -120,13 +120,25 @@
 .movie-trailer__video {
     position: relative;
     overflow: hidden;
-}
-
-.movie-trailer__player {
-    display: block;
     width: 100%;
     aspect-ratio: 16 / 9; 
-    object-fit: cover;
+
+}
+
+.movie-trailer__poster {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.movie-trailer__source {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .movie-trailer__gradient {
@@ -164,6 +176,17 @@
     border-bottom: 18px solid transparent;
     border-left: 28px solid var(--black);
     margin-left: 6px; 
+}
+
+.movie-trailer__video.is-playing .movie-trailer__poster,
+.movie-trailer__video.is-playing .movie-trailer__gradient,
+.movie-trailer__video.is-playing .movie-trailer__play {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.movie-trailer__video.is-playing .movie-trailer__source {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -296,9 +319,14 @@
 }
 
 .reviews-item__text {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
     color: var(--text-primary);
     font-size: 20px;
     line-height: 1.35;
+    flex: 0 0 calc(50% - 11px);
 }
   
 .rating__star--filled {

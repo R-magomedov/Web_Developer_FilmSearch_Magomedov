@@ -1,26 +1,22 @@
-function initSlider(container, gap) {
+export function initSlider(container, gap) {
     const list = container.querySelector('ul');
-    const prevArrows = container.querySelectorAll('.gallery__arrow--prev');
-    const nextArrows = container.querySelectorAll('.gallery__arrow--next');
     const card = list.querySelector('li');
+    if (!card) return;
     const offset = card.offsetWidth + gap;
     const lastCard = list.lastElementChild;
     const firstCard = list.firstElementChild;
-    if (!prevArrows.length || !nextArrows.length ) return;
-    if (!card) return;
 
-    nextArrows.forEach((next) => {
-        next.addEventListener('click', () => {
-            list.scrollBy({ left: offset, behavior: "smooth" });
-        })
-    })
-    
 
-    prevArrows.forEach((prev) => {
-        prev.addEventListener('click', () => {
-            list.scrollBy({ left: -offset, behavior: "smooth" });
-        })
-    })
+    container.addEventListener('click', (event) => {
+        const btn = event.target.closest('.gallery__arrow');
+        if (!btn) return;
+        
+        if (btn.classList.contains('gallery__arrow--next')) {
+            list.scrollBy({ left: offset, behavior: 'smooth' });
+        } else {
+            list.scrollBy({ left: -offset, behavior: 'smooth' });
+        }
+    });
 
     const callbackCreator = function (containerElement, arrowSelector) {
         return (entries) => {
@@ -44,5 +40,5 @@ function initSlider(container, gap) {
 
     const observerFirst = new IntersectionObserver(callbackCreator(container, '.gallery__arrow--prev'), options);
     observerFirst.observe(firstCard);
-
 }
+
