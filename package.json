@@ -1,0 +1,27 @@
+{
+  "name": "movie_search",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/R-magomedov/Web_Developer_FilmSearch_Magomedov#readme",
+  "bugs": {
+    "url": "https://github.com/R-magomedov/Web_Developer_FilmSearch_Magomedov/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-magomedov/Web_Developer_FilmSearch_Magomedov.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.5",
+    "@babel/preset-env": "^8.0.5",
+    "babel-jest": "^30.5.1",
+    "jest": "^30.5.1",
+    "jest-environment-jsdom": "^30.5.1"
+  }
+}

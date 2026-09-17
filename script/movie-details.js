@@ -2,7 +2,7 @@ const API_KEY = 'Q9PXRVW-TE4MJ16-M78RYAV-SEQ2P3C';
 
 import { initSlider } from "../script/slider.js";
 import { API_MOVIE_ID, fetchMovies } from "./api.js";
-import { searchForm } from "./render-cards.js";
+import { getRatingClass, searchForm } from "./render-cards.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -213,13 +213,6 @@ function updateMovieDetails(movie) {
     // Обновляем отзывы
     getMovieReviews(movie.id);
 
-}
-
-function getRatingClass(rating) {
-    if (!rating) return 'movie-card__rating--low';
-    if (rating >= 7.5) return 'movie-card__rating--high';
-    if (rating >= 5) return 'movie-card__rating--medium';
-    return 'movie-card__rating--low';
 }
 
 const videoWrapper = document.querySelector('.movie-trailer__video');

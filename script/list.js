@@ -1,10 +1,8 @@
-// type=tv-series
-
 import { fetchMovies } from "./api.js";
+import { buildApi } from "./listBuildApi.js";
 import { searchForm, showMovies } from "./render-cards.js";
 import { initSlider } from "./slider.js";
 
-const API_LIST = 'https://api.poiskkino.dev/v1.5/movie?type=movie&notNullFields=name,rating.kp,poster.url&limit=45';
 const itemsPerPage = 9;
 
 let allMovies = [];
@@ -46,26 +44,14 @@ function toggleActive(select) {
     select.classList.toggle('active', !!select.value)
 }
 
-function buildApi() {
-    let url = API_LIST;
-    if (currentGenre) {
-        url = `${url}&genres.name=${currentGenre}`;
-    }
-    if (currentRating) {
-        url = `${url}&rating.kp=${currentRating}`;
-    }
-    if (currentYear) {
-        url = `${url}&year=${currentYear}`;
-    }
-    if (currentCountry) {
-        url = `${url}&countries.name=${currentCountry}`;
-    }
-    return url;
-}
-
 async function loadMovies() {
     try {
-        const url = buildApi();
+        const url = buildApi({
+            genre: currentGenre,
+            rating: currentRating,
+            year: currentYear,
+            country: currentCountry
+        });
         const data = await fetchMovies(url);
         allMovies = data.docs || [];
         renderPage(1);

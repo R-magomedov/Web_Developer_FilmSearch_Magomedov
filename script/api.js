@@ -32,26 +32,3 @@ async function fetchMovieid(id) {
 }
 
 export { API_KEY, fetchMovies, fetchMovieid, API_MOVIE_ID }
-
-// async function getMovieShots(movieId) {
-//     const url = `${API_URL_IMAGE}${movieId}&notNullFields=url&limit=10&withCount=false`;
-//     try {
-//         const response = await fetch(url, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Accept': 'application/json',
-//                 'X-API-KEY': API_KEY
-//             }
-//         });
-//         const data = await response.json();
-
-//         if (data.docs && data.docs.length > 0) {
-//             showShots(data.docs);
-//         }
-
-//         initSlider(document.querySelector('.movie-shots'), 20);
-
-//     } catch (error) {
-//         console.error('Ошибка сети:', error);
-//     }
-// }

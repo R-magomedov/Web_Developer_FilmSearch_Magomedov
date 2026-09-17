@@ -41,4 +41,3 @@ export function initSlider(container, gap) {
     const observerFirst = new IntersectionObserver(callbackCreator(container, '.gallery__arrow--prev'), options);
     observerFirst.observe(firstCard);
 }
-

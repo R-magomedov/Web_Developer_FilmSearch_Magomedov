@@ -3,6 +3,13 @@ import { fetchMovieid, fetchMovies } from "./api.js";
 const API_SEARCH_URL =
     'https://api.poiskkino.dev/v1.5/movie/search?page=1&limit=10&selectFields=&notNullFields=name,rating.kp,poster.url&query=';
 
+function getRatingClass(rating) {
+    if (rating === null || rating === undefined) return '';
+    if (rating >= 7.5) return 'movie-card__rating--high';
+    if (rating >= 5) return 'movie-card__rating--medium';
+    return 'movie-card__rating--low';
+}
+
 function showMovies(movies, ul) {
     const movieList = document.getElementById(ul);
     movieList.innerHTML = '';
@@ -10,23 +17,13 @@ function showMovies(movies, ul) {
     movies.forEach(movie => {
         const li = document.createElement('li');
         li.className = 'movie-card';
-
-        let getClassByRating = function (rating) {
-            if (rating >= 7.5) {
-                return 'movie-card__rating--high';
-            } else if (rating >= 5) {
-                return 'movie-card__rating--medium';
-            } else {
-                return 'movie-card__rating--low';
-            }
-        };
-
         let ratingfixed = movie.rating.kp ? movie.rating.kp.toFixed(1) : movie.rating.imdb.toFixed(1);
+        let rating = parseFloat(ratingfixed);
 
 
         li.innerHTML = `
         <div class="movie-card__overlay">
-          <div class="movie-card__rating ${getClassByRating(ratingfixed)}">${ratingfixed}</div>
+          <div class="movie-card__rating ${getRatingClass(rating)}">${ratingfixed}</div>
           <h3 class="movie-card__title">${movie.name}</h3>
         </div>
         <div class="movie-card__media">
@@ -57,6 +54,4 @@ async function searchForm(onSearchResult) {
     });
 }
 
-
-
-export { showMovies, searchForm }
+export { showMovies, searchForm, getRatingClass }
