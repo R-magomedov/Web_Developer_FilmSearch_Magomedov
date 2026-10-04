@@ -1,12 +1,19 @@
 function initBurger () {
            
-    const burger = document.querySelector('.burger')
-    const panel = document.querySelector('.header__panel')
-    if (!panel) return;
+    const burger = document.querySelector('.burger');
+    const panelOpen = document.querySelector('.header__panel');
+    const panelClose = document.querySelector('.closePanel');
+    if (!panelOpen) return;
     if (!burger) return;
+    if (!panelClose) return;
     burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        panel.classList.toggle('active');
+        burger.disabled = true;
+        panelOpen.classList.add('active');
+    });
+
+    panelClose.addEventListener('click', () => {
+        panelOpen.classList.remove('active');
+        burger.disabled = false;
     });
 }
 
