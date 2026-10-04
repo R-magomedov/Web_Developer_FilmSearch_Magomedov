@@ -1,10 +1,15 @@
-import { API_LIST, buildApi } from "./listBuildApi";
+import { API_LIST_MOVIES, buildApi } from "./listBuildApi";
+
 
 describe('функция buildApi, формирует корректный URL с фильтрами', () => {
 
+    beforeEach(() => {
+        document.body.dataset.page = 'movies';
+    });
+
     it('возвращает базовый URL без фильтров', () => {
         const url = buildApi();
-        expect(url).toBe(API_LIST);
+        expect(url).toBe(API_LIST_MOVIES);
     });
 
     it('добавляет жанр', () => {

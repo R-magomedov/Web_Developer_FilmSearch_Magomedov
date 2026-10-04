@@ -20,4 +20,4 @@ function buildApi({ genre, rating, year, country } = {} ) {
     return url;
 }
 
-export { buildApi }
+export { buildApi, API_LIST_MOVIES }
