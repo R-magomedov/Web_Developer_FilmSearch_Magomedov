@@ -20,4 +20,10 @@ async function initGallery() {
     }
 }
 
+const heroArrow = document.querySelector('.hero__arrow');
+const gallery = document.querySelector('.gallery');
+heroArrow.addEventListener('click', ()=> {
+    gallery.scrollIntoView({ behavior: 'smooth' });
+})
+
 initGallery();
