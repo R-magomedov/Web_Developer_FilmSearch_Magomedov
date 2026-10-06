@@ -1,7 +1,5 @@
-const API_KEY = 'Q9PXRVW-TE4MJ16-M78RYAV-SEQ2P3C';
-
 import { initSlider } from "../script/slider.js";
-import { API_MOVIE_ID, fetchMovies } from "./api.js";
+import { API_KEY, API_MOVIE_ID, fetchMovies } from "./api.js";
 import { getRatingClass, searchForm } from "./render-cards.js";
 
 
@@ -39,6 +37,8 @@ searchForm(async (data) => {
 
 async function getMovieShots(movieId) {
     const API_URL_IMAGE = `https://api.poiskkino.dev/v1.5/image?movieId=${movieId}&notNullFields=url&limit=10&withCount=false`;
+    document.querySelector('.movie-shots__list').innerHTML = '';
+    document.querySelector('.movie-shots').style.display = '';
     try {
         const response = await fetch(API_URL_IMAGE, {
             headers: {
@@ -63,6 +63,8 @@ async function getMovieShots(movieId) {
 
 async function getMovieReviews(movieID) {
     const API_REVIEWS = `https://api.poiskkino.dev/v1.5/review?movieId=${movieID}&limit=2&withCount=false`;
+    document.querySelector('.reviews-list').innerHTML = '';
+    document.querySelector('.movie-reviews').style.display = '';
     try {
         const response = await fetch(API_REVIEWS, {
             headers: {
@@ -90,11 +92,11 @@ function showReviews(data) {
     const reviewsList = document.querySelector('.reviews-list')
 
 
-    data.forEach(movie => {
+    data.forEach(review => {
         const li = document.createElement('li')
         li.className = 'reviews-item'
         li.innerHTML = `
-                    <h3 class="reviews-item__author">${movie.author || 'Аноним'}</h3>
+                    <h3 class="reviews-item__author"></h3>
                     <div class="rating">
                         <svg class="rating__star rating__star--filled" viewBox="0 0 25 24" fill="currentColor"
                             aria-label="Звезда для рейтинга">
@@ -147,8 +149,10 @@ function showReviews(data) {
                                 d="M12.1224 19.4048L18.0015 22.9606C19.0782 23.6123 20.3957 22.649 20.1124 21.4306L18.554 14.744L23.7532 10.239C24.7024 9.41729 24.1924 7.85896 22.9457 7.75979L16.1032 7.17896L13.4257 0.860625C12.944 -0.286875 11.3007 -0.286875 10.819 0.860625L8.14152 7.16479L1.29902 7.74563C0.0523565 7.84479 -0.457644 9.40312 0.491523 10.2248L5.69069 14.7298L4.13236 21.4165C3.84902 22.6348 5.16652 23.5981 6.24319 22.9465L12.1224 19.4048Z" />
                         </svg>
                     </div>
-                    <p class="reviews-item__text">${movie.review || 'Нет текста'}</p>
-        `
+                    <p class="reviews-item__text"></p>
+        `;
+        li.querySelector('.reviews-item__author').textContent = review.author || 'Аноним';
+        li.querySelector('.reviews-item__text').textContent = review.review || 'Нет текста';
         reviewsList.appendChild(li)
     })
 }

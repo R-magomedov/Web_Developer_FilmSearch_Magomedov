@@ -1,13 +1,15 @@
+let observers = [];
+
 export function initSlider(container, gap) {
     const list = container.querySelector('ul');
     const card = list.querySelector('li');
     if (!card) return;
+    observers.forEach(observer => observer.disconnect());
     const offset = card.offsetWidth + gap;
     const lastCard = list.lastElementChild;
     const firstCard = list.firstElementChild;
 
-
-    container.addEventListener('click', (event) => {
+    container.onclick = (event) => {
         const btn = event.target.closest('.gallery__arrow');
         if (!btn) return;
         
@@ -16,7 +18,7 @@ export function initSlider(container, gap) {
         } else {
             list.scrollBy({ left: -offset, behavior: 'smooth' });
         }
-    });
+    };
 
     const callbackCreator = function (containerElement, arrowSelector) {
         return (entries) => {
@@ -40,4 +42,5 @@ export function initSlider(container, gap) {
 
     const observerFirst = new IntersectionObserver(callbackCreator(container, '.gallery__arrow--prev'), options);
     observerFirst.observe(firstCard);
+    observers = [observerFirst, observerLast];
 }

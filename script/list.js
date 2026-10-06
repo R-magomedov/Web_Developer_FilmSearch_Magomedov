@@ -69,7 +69,7 @@ function renderPage(pageNum) {
 
     showMovies(pageMovies, 'ul');
     updatePageNumbers();
-
+    initSlider(document.querySelector('.catalog__slider'), 15);
 };
 
 function updatePageNumbers() {
@@ -97,7 +97,6 @@ function updatePageNumbers() {
 
 async function initCatalog() {
     await loadMovies();
-    initSlider(document.querySelector('.catalog__slider'), 15);
     searchForm((data) => {
         document.querySelector('#ul').scrollIntoView({ behavior: 'smooth' });
         showMovies(data.docs, 'ul')
