@@ -3,7 +3,7 @@ const API_MOVIE_ID =
     'https://api.poiskkino.dev/v1.5/movie/';
 
 async function fetchMovies(url) {
-    try {
+    
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
@@ -11,11 +11,10 @@ async function fetchMovies(url) {
                 'X-API-KEY': API_KEY
             }
         });
-        const data = await response.json();
-        return data
-    } catch (error) {
-        console.error('Ошибка сети:', error);
-    }
+        if (!response.ok) {
+            throw new Error(`Ошибка запроса: ${response.status}`)
+        }
+        return response.json();   
 
 };
 

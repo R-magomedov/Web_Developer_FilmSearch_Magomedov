@@ -9,17 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Получаем данные фильма из localStorage
     const movieData = localStorage.getItem('currentMovie');
 
-    if (movieData) {
-        const movie = JSON.parse(movieData);
-        console.log('Загруженный фильм:', movie);
-
-        // Обновляем содержимое страницы
-        updateMovieDetails(movie);
-
-        // Очищаем localStorage
-        // localStorage.removeItem('currentMovie');
-    } else {
+    if (!movieData) {
         alert('Данные фильма не найдены');
+        return;
+    }
+
+    try {
+        const movie = JSON.parse(movieData);
+        updateMovieDetails(movie);
+        localStorage.removeItem('currentMovie');
+
+    } catch (error) {
+        console.error('Повреждённые данные фильма:', error);
+        alert('Не удалось отобразить фильм');
     }
 });
 

@@ -43,14 +43,23 @@ async function searchForm(onSearchResult) {
     search__form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const searchInput = search__form.querySelector('.search__input');
-        const searchQuery = searchInput.value;
+        const searchQuery = searchInput.value.trim();
+        if(!searchQuery) return;
 
-        const searchUrl = `${API_SEARCH_URL}${encodeURIComponent(searchQuery)}`;
-        const data = await fetchMovies(searchUrl);
+        try {
+            const data = await fetchMovies(`${API_SEARCH_URL}${encodeURIComponent(searchQuery)}`);
+            if(!data.docs?.length) {
+                alert('ничего не найдено');
+                searchInput.value = '';
+                return;
+            }
+            searchInput.value = '';
+            onSearchResult(data);
 
-        searchInput.value = '';
-
-        onSearchResult(data);
+        } catch (error) {
+            console.error('Ошибка поиска:', error);
+            alert('Не удалось выполнить поиск. Попробуйте позже');
+        }
     });
 }
 
