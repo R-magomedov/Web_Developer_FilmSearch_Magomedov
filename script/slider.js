@@ -1,8 +1,10 @@
 let observers = [];
 
+// Настраивает прокрутку карточек стрелками и отключает стрелки на краях списка.
 export function initSlider(container, gap) {
     const list = container.querySelector('ul');
     const card = list.querySelector('li');
+    // Перед новой инициализацией отключаем наблюдателей от предыдущего списка.
     observers.forEach(observer => observer.disconnect());
     if (!card) return;
     const offset = card.offsetWidth + gap;
@@ -20,6 +22,7 @@ export function initSlider(container, gap) {
         }
     };
 
+    // Наблюдатель отключает нужную стрелку, когда первая или последняя карточка видна.
     const callbackCreator = function (containerElement, arrowSelector) {
         return (entries) => {
             entries.forEach((entry) => {

@@ -2,6 +2,7 @@ const API_KEY = 'Q9PXRVW-TE4MJ16-M78RYAV-SEQ2P3C';
 const API_MOVIE_ID =
     'https://api.poiskkino.dev/v1.5/movie/';
 
+// Выполняет запрос к API и возвращает разобранный JSON-ответ.
 async function fetchMovies(url) {
     
         const response = await fetch(url, {
@@ -18,6 +19,7 @@ async function fetchMovies(url) {
 
 };
 
+// Загружает данные выбранного фильма и открывает страницу с подробностями.
 async function fetchMovieid(id) {
     try {
         const url = `${API_MOVIE_ID}${id}`;

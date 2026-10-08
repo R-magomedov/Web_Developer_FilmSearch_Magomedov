@@ -1,3 +1,4 @@
+// Настраивает открытие и закрытие мобильного меню.
 function initBurger () {
            
     const burger = document.querySelector('.burger');

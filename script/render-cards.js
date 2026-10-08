@@ -3,6 +3,7 @@ import { fetchMovieid, fetchMovies } from "./api.js";
 const API_SEARCH_URL =
     'https://api.poiskkino.dev/v1.5/movie/search?page=1&limit=10&selectFields=&notNullFields=name,rating.kp,poster.url&query=';
 
+// Возвращает CSS-класс цвета в зависимости от рейтинга.
 function getRatingClass(rating) {
     if (rating === null || rating === undefined) return '';
     if (rating >= 7.5) return 'movie-card__rating--high';
@@ -10,6 +11,7 @@ function getRatingClass(rating) {
     return 'movie-card__rating--low';
 }
 
+// Очищает контейнер и создаёт карточки фильмов из массива API.
 function showMovies(movies, ul) {
     const movieList = document.getElementById(ul);
     movieList.innerHTML = '';
@@ -43,6 +45,7 @@ function showMovies(movies, ul) {
     });
 }
 
+// Подключает форму поиска и передаёт найденные фильмы в функцию страницы.
 async function searchForm(onSearchResult) {
     const search__form = document.querySelector('.search__form');
     if (!search__form) return;
@@ -52,6 +55,7 @@ async function searchForm(onSearchResult) {
         const searchQuery = searchInput.value.trim();
         if(!searchQuery) return;
 
+        // Кодируем запрос, чтобы поиск работал с пробелами и кириллицей.
         try {
             const data = await fetchMovies(`${API_SEARCH_URL}${encodeURIComponent(searchQuery)}`);
             if(!data.docs?.length) {

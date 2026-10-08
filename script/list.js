@@ -13,7 +13,8 @@ let currentYear = '';
 let currentRating = '';
 let lastRequestId = 0;
 
-const genre = document.getElementById('genre')
+// Каждый фильтр обновляет список с учётом всех выбранных значений.
+const genre = document.getElementById('genre');
 genre.addEventListener('change', () => {
     currentGenre = genre.value;
     toggleActive(genre);
@@ -45,6 +46,7 @@ function toggleActive(select) {
     select.classList.toggle('active', !!select.value)
 }
 
+// Загружает фильмы по фильтрам. Устаревший ответ не меняет каталог.
 async function loadMovies() {
     const requestId = ++lastRequestId;
 
@@ -67,6 +69,7 @@ async function loadMovies() {
     }
 }
 
+// Отрисовывает выбранную страницу каталога и обновляет слайдер на мобильных устройствах.
 function renderPage(pageNum) {
     currentPage = pageNum;
 
@@ -79,6 +82,7 @@ function renderPage(pageNum) {
     initSlider(document.querySelector('.catalog__slider'), 15);
 };
 
+// Создаёт номера страниц для текущего списка фильмов.
 function updatePageNumbers() {
     const container = document.querySelector('.pages');
     const maxPages  = Math.ceil(allMovies.length / itemsPerPage);
@@ -102,6 +106,7 @@ function updatePageNumbers() {
     }
 };
 
+// Подключает поиск и загружает каталог при открытии страницы.
 async function initCatalog() {
     searchForm((data) => {
         lastRequestId++;

@@ -5,6 +5,7 @@ import { getRatingClass, searchForm } from "./render-cards.js";
 let currentMovieId = null;
 let lastMovieRequestId = 0;
 
+// При открытии страницы берёт выбранный фильм из localStorage.
 document.addEventListener('DOMContentLoaded', () => {
     // Получаем данные фильма из localStorage
     const movieData = localStorage.getItem('currentMovie');
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Поиск на странице фильма открывает первый фильм из выдачи без новой вкладки.
 searchForm(async (data) => {
     const movieID = data.docs[0]?.id;
     if (!movieID) return;
@@ -48,6 +50,7 @@ async function getMovieShots(movieId) {
     const section = document.querySelector('.movie-shots');
     document.querySelector('.movie-shots__list').innerHTML = '';
     section.style.display = '';
+    // Кадры запрашиваются отдельно, чтобы не задерживать показ основной информации.
     try {
         const data = await fetchMovies(`https://api.poiskkino.dev/v1.5/image?movieId=${movieId}&notNullFields=url&limit=10&withCount=false`);
         if (movieId !== currentMovieId) return;
@@ -70,6 +73,7 @@ async function getMovieShots(movieId) {
 async function getMovieReviews(movieID) {
     document.querySelector('.reviews-list').innerHTML = '';
     document.querySelector('.movie-reviews').style.display = '';
+    // Отзывы также загружаются отдельным запросом.
     try {
         const data = await fetchMovies(`https://api.poiskkino.dev/v1.5/review?movieId=${movieID}&limit=2&withCount=false`);
         if (movieID !== currentMovieId) return;
@@ -158,6 +162,7 @@ function showReviews(data) {
     })
 }
 
+// Добавляет кадры фильма в список слайдера.
 function showShots(movie) {
     const movieShotsList = document.querySelector('.movie-shots__list');
 
@@ -177,6 +182,7 @@ function showShots(movie) {
 
 }
 
+// Заполняет страницу подробной информацией о выбранном фильме.
 function updateMovieDetails(movie) {
     currentMovieId = movie.id;
 
