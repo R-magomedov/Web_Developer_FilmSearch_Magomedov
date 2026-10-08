@@ -4,18 +4,18 @@ const API_MOVIE_ID =
 
 // Выполняет запрос к API и возвращает разобранный JSON-ответ.
 async function fetchMovies(url) {
-    
-        const response = await fetch(url, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-API-KEY': API_KEY
-            }
-        });
-        if (!response.ok) {
-            throw new Error(`Ошибка запроса: ${response.status}`)
+
+    const response = await fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-API-KEY': API_KEY
         }
-        return response.json();   
+    });
+    if (!response.ok) {
+        throw new Error(`Ошибка запроса: ${response.status}`)
+    }
+    return response.json();
 
 };
 
@@ -25,14 +25,14 @@ async function fetchMovieid(id) {
         const url = `${API_MOVIE_ID}${id}`;
         const dataID = await fetchMovies(url);
         localStorage.setItem('currentMovie', JSON.stringify(dataID));
-         // Определяем путь в зависимости от текущей страницы
-         const currentPath = window.location.pathname;
-         const moviePath = currentPath.includes('/movie_list') || currentPath.includes('/series_list')
-             ? '../movie/index.html'
-             : './movie/index.html';
-         
-         window.open(moviePath);
-         return dataID;
+        // Определяем путь в зависимости от текущей страницы
+        const currentPath = window.location.pathname;
+        const moviePath = currentPath.includes('/movie_list') || currentPath.includes('/series_list')
+            ? '../movie/index.html'
+            : './movie/index.html';
+
+        window.location.href = moviePath;
+        return dataID;
     } catch (error) {
         console.error('Не удалось загрузить фильм:', error);
     }
