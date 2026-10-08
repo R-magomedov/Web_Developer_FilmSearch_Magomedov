@@ -11,6 +11,7 @@ let currentGenre = '';
 let currentCountry = '';
 let currentYear = '';
 let currentRating = '';
+let lastRequestId = 0;
 
 const genre = document.getElementById('genre')
 genre.addEventListener('change', () => {
@@ -45,6 +46,8 @@ function toggleActive(select) {
 }
 
 async function loadMovies() {
+    const requestId = ++lastRequestId;
+
     try {
         const url = buildApi({
             genre: currentGenre,
@@ -53,9 +56,13 @@ async function loadMovies() {
             country: currentCountry
         });
         const data = await fetchMovies(url);
+        if (requestId !== lastRequestId) return;
+
         allMovies = data.docs || [];
         renderPage(1);
     } catch (error) {
+        if (requestId !== lastRequestId) return;
+
         console.error('Ошибка сети:', error);
     }
 }
@@ -96,11 +103,13 @@ function updatePageNumbers() {
 };
 
 async function initCatalog() {
-    await loadMovies();
     searchForm((data) => {
-        document.querySelector('#ul').scrollIntoView({ behavior: 'smooth' });
-        showMovies(data.docs, 'ul')
+        lastRequestId++;
+        document.querySelector('#ul')?.scrollIntoView({ behavior: 'smooth' });
+        allMovies = data.docs;
+        renderPage(1);
     });
+    await loadMovies();
 }
 
 initCatalog();

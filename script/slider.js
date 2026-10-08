@@ -3,8 +3,8 @@ let observers = [];
 export function initSlider(container, gap) {
     const list = container.querySelector('ul');
     const card = list.querySelector('li');
-    if (!card) return;
     observers.forEach(observer => observer.disconnect());
+    if (!card) return;
     const offset = card.offsetWidth + gap;
     const lastCard = list.lastElementChild;
     const firstCard = list.firstElementChild;

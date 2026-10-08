@@ -17,20 +17,25 @@ function showMovies(movies, ul) {
     movies.forEach(movie => {
         const li = document.createElement('li');
         li.className = 'movie-card';
-        let ratingfixed = movie.rating.kp ? movie.rating.kp.toFixed(1) : movie.rating.imdb.toFixed(1);
-        let rating = parseFloat(ratingfixed);
+        const rating = movie.rating?.kp ?? movie.rating?.imdb;
+        const ratingFixed = typeof rating === 'number' ? rating.toFixed(1) : '—';
+        const posterUrl = movie.poster?.url;
+        const movieName = movie.name || 'Название не указано';
 
 
         li.innerHTML = `
         <div class="movie-card__overlay">
-          <div class="movie-card__rating ${getRatingClass(rating)}">${ratingfixed}</div>
-          <h3 class="movie-card__title">${movie.name}</h3>
+          <div class="movie-card__rating ${getRatingClass(rating)}">${ratingFixed}</div>
+          <h3 class="movie-card__title">${movieName}</h3>
         </div>
         <div class="movie-card__media">
-          <img src="${movie.poster.url}" alt="${movie.name}" class="movie-card__poster">
+          <img alt="${movieName}" class="movie-card__poster">
           <div class="movie-card__gradient" aria-hidden="true"></div>
         </div>
       `;
+        if (posterUrl) {
+            li.querySelector('.movie-card__poster').src = posterUrl;
+        }
         movieList.appendChild(li);
         li.addEventListener('click', () => {
             fetchMovieid(movie.id);
@@ -40,6 +45,7 @@ function showMovies(movies, ul) {
 
 async function searchForm(onSearchResult) {
     const search__form = document.querySelector('.search__form');
+    if (!search__form) return;
     search__form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const searchInput = search__form.querySelector('.search__input');
@@ -54,7 +60,7 @@ async function searchForm(onSearchResult) {
                 return;
             }
             searchInput.value = '';
-            onSearchResult(data);
+            await onSearchResult(data);
 
         } catch (error) {
             console.error('Ошибка поиска:', error);

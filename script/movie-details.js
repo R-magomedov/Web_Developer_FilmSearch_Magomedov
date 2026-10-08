@@ -1,7 +1,9 @@
 import { initSlider } from "../script/slider.js";
-import { API_KEY, API_MOVIE_ID, fetchMovies } from "./api.js";
+import { API_MOVIE_ID, fetchMovies } from "./api.js";
 import { getRatingClass, searchForm } from "./render-cards.js";
 
+let currentMovieId = null;
+let lastMovieRequestId = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Получаем данные фильма из localStorage
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         const movie = JSON.parse(movieData);
         updateMovieDetails(movie);
-        localStorage.removeItem('currentMovie');
+        // localStorage.removeItem('currentMovie');
 
     } catch (error) {
         console.error('Повреждённые данные фильма:', error);
@@ -24,57 +26,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 searchForm(async (data) => {
-    const movieID = data.docs[0].id;
+    const movieID = data.docs[0]?.id;
     if (!movieID) return;
+    const requestId = ++lastMovieRequestId;
 
-    const url = `${API_MOVIE_ID}${movieID}`;
-    const fullMovie = await fetchMovies(url);
+    try {
+        const url = `${API_MOVIE_ID}${movieID}`;
+        const fullMovie = await fetchMovies(url);
+        if (requestId !== lastMovieRequestId) return;
 
-    document.querySelector('.movie-details').scrollIntoView({ behavior: 'smooth' });
-    updateMovieDetails(fullMovie);
-
+        document.querySelector('.movie-details')?.scrollIntoView({ behavior: 'smooth' });
+        updateMovieDetails(fullMovie);
+    } catch (error) {
+        console.error('Ошибка при открытии фильма:', error);
+        alert('Не удалось открыть фильм. Попробуйте позже');
+    }
 })
 
 async function getMovieShots(movieId) {
-    const API_URL_IMAGE = `https://api.poiskkino.dev/v1.5/image?movieId=${movieId}&notNullFields=url&limit=10&withCount=false`;
+
+    const section = document.querySelector('.movie-shots');
     document.querySelector('.movie-shots__list').innerHTML = '';
-    document.querySelector('.movie-shots').style.display = '';
+    section.style.display = '';
     try {
-        const response = await fetch(API_URL_IMAGE, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-API-KEY': API_KEY
-            }
-        });
-        const data = await response.json();
+        const data = await fetchMovies(`https://api.poiskkino.dev/v1.5/image?movieId=${movieId}&notNullFields=url&limit=10&withCount=false`);
+        if (movieId !== currentMovieId) return;
+
         if (data.docs && data.docs.length > 0) {
             showShots(data.docs);
+            initSlider(section, 20);
         } else {
-            document.querySelector('.movie-shots').style.display = 'none';
+            section.style.display = 'none';
         }
 
-        initSlider(document.querySelector('.movie-shots'), 20);
-
     } catch (error) {
-        console.error('Ошибка сети:', error);
+        if (movieId !== currentMovieId) return;
+
+        console.error('Ошибка загрузки кадров:', error);
+        section.style.display = 'none';
     }
 }
 
 async function getMovieReviews(movieID) {
-    const API_REVIEWS = `https://api.poiskkino.dev/v1.5/review?movieId=${movieID}&limit=2&withCount=false`;
     document.querySelector('.reviews-list').innerHTML = '';
     document.querySelector('.movie-reviews').style.display = '';
     try {
-        const response = await fetch(API_REVIEWS, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-API-KEY': API_KEY
-            }
-        });
-        const data = await response.json();
-        console.log('Полный ответ с отзывами:', data.docs);
+        const data = await fetchMovies(`https://api.poiskkino.dev/v1.5/review?movieId=${movieID}&limit=2&withCount=false`);
+        if (movieID !== currentMovieId) return;
 
         if (data.docs.length > 0) {
             showReviews(data.docs)
@@ -83,7 +81,10 @@ async function getMovieReviews(movieID) {
         }
 
     } catch (error) {
+        if (movieID !== currentMovieId) return;
+
         console.error('Ошибка при загрузке отзывов:', error);
+        document.querySelector('.movie-reviews').style.display = 'none';
     }
 
 }
@@ -160,7 +161,6 @@ function showReviews(data) {
 function showShots(movie) {
     const movieShotsList = document.querySelector('.movie-shots__list');
 
-    console.log('this data images', movie)
     movie.forEach(mov => {
         const movieShotsItem = document.createElement('li');
         movieShotsItem.className = ('movie-shots__item');
@@ -178,20 +178,25 @@ function showShots(movie) {
 }
 
 function updateMovieDetails(movie) {
+    currentMovieId = movie.id;
+
     // Обновляем заголовок
-    document.querySelector('.movie-details__title').textContent = movie.name;
+    document.querySelector('.movie-details__title').textContent = movie.name || 'Название не указано';
 
     // Обновляем рейтинг
-    const rating = movie.rating.kp || movie.rating.imdb;
+    const rating = movie.rating?.kp ?? movie.rating?.imdb;
     const ratingClass = getRatingClass(rating);
-    document.querySelector('.movie-card__rating').textContent = rating.toFixed(1);
+    document.querySelector('.movie-card__rating').textContent = typeof rating === 'number' ? rating.toFixed(1) : '—';
     document.querySelector('.movie-card__rating').className = `movie-card__rating ${ratingClass}`;
 
     // Обновляем постер
-    document.querySelector('.movie-card__poster').src = movie.poster.url;
-    document.querySelector('.movie-card__poster').alt = movie.name;
+    const posterUrl = movie.poster?.url || '../assets/Images/about-bg.png';
+    document.querySelector('.movie-card__poster').src = posterUrl;
+    document.querySelector('.movie-card__poster').alt = movie.name || 'Постер фильма';
 
     // Обновляем информацию о фильме
+    const premiere = movie.premiere?.world;
+    const releaseDate = premiere ? new Date(premiere).toLocaleDateString('ru-RU') : 'Не указано';
     const movieInfo = document.querySelector('.movie-details__list');
     movieInfo.innerHTML = `
         <dt>Жанр</dt>
@@ -203,14 +208,13 @@ function updateMovieDetails(movie) {
         <dt>Режиссеры</dt>
         <dd>${movie.persons?.filter(p => p.enProfession === 'director').map(p => p.name).join(', ') || 'Не указано'}</dd>
         <dt>Дата релиза</dt>
-        <dd>${new Date(movie.premiere?.world).toLocaleDateString('ru-RU') || 'Не указано'}</dd>
+        <dd>${releaseDate}</dd>
         <dt>Возрастное ограничение</dt>
         <dd>${movie.ratingMpaa || 'Не указано'}</dd>
     `;
 
     // Обновляем трейлер
     document.querySelector('.movie-trailer__source').src = movie.videos?.trailers?.[0]?.url || 'https://www.youtube.com/embed/';
-    const posterUrl = movie.poster?.url || '../assets/Images/about-bg.png';
     document.querySelector('.movie-trailer__poster').style.backgroundImage = `url(${posterUrl})`;
 
     // Обновляем шотсы

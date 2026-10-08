@@ -101,3 +101,12 @@ test('функция удаляет старые карточки, перед о
     expect(ul.children.length).toBe(2)
 
 })
+
+test('функция отображает карточку с неполными данными API', () => {
+    document.body.innerHTML = `<ul id="ul"></ul>`;
+
+    showMovies([{ id: 3 }], 'ul');
+
+    expect(document.querySelectorAll('#ul .movie-card')).toHaveLength(1);
+    expect(document.querySelector('.movie-card__rating').textContent).toBe('—');
+});
