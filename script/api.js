@@ -25,8 +25,14 @@ async function fetchMovieid(id) {
         const url = `${API_MOVIE_ID}${id}`;
         const dataID = await fetchMovies(url);
         localStorage.setItem('currentMovie', JSON.stringify(dataID));
-        window.open('../movie/index.html', '_blank');
-        return dataID;
+         // Определяем путь в зависимости от текущей страницы
+         const currentPath = window.location.pathname;
+         const moviePath = currentPath.includes('/movie_list') || currentPath.includes('/series_list')
+             ? '../movie/index.html'
+             : './movie/index.html';
+         
+         window.open(moviePath, '_blank');
+         return dataID;
     } catch (error) {
         console.error('Не удалось загрузить фильм:', error);
     }
