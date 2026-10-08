@@ -31,7 +31,7 @@ async function fetchMovieid(id) {
              ? '../movie/index.html'
              : './movie/index.html';
          
-         window.open(moviePath, '_blank');
+         window.open(moviePath);
          return dataID;
     } catch (error) {
         console.error('Не удалось загрузить фильм:', error);
