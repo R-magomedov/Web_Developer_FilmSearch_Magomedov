@@ -20,10 +20,10 @@
 
 ## Технологии
 
-• HTML5, CSS3 (Адаптивная вёрстка)
-• JavaScript (ES6+, модули)
-• Работа с API: Fetch API, Kinopoisk API
-• Тестирование: Jest
+- HTML5, CSS3 (Адаптивная вёрстка)
+- JavaScript (ES6+, модули)
+- Работа с API: Fetch API, Kinopoisk API
+- Тестирование: Jest
 
 ## Запуск тестов
 
