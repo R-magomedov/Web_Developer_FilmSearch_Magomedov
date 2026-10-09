@@ -2,7 +2,7 @@
 
 Учебный дипломный проект для поиска фильмов и сериалов через Kinopoisk API. На сайте можно посмотреть подборку, найти фильм по названию, применить фильтры и открыть страницу с подробной информацией.
 
-Деплой: [добавить ссылку]
+Деплой: https://r-magomedov.github.io/Web_Developer_FilmSearch_Magomedov/
 
 ## Функционал
 
@@ -17,13 +17,10 @@
 
 ## Технологии
 
-- HTML5;
-- CSS3;
-- JavaScript (ES6+, модули);
-- Fetch API;
-- Kinopoisk API;
-- Jest;
-- Git/GitHub.
+• HTML5, CSS3 (Адаптивная вёрстка)
+• JavaScript (ES6+, модули)
+• Работа с API: Fetch API, Kinopoisk API
+• Тестирование: Jest
 
 ## Запуск тестов
 
